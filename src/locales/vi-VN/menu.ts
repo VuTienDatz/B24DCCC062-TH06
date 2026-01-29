@@ -4,6 +4,7 @@ export default {
 	'menu.account.center': 'Cá nhân',
 	'menu.Dashboard': 'Trang chủ',
 	'menu.About': `Giới thiệu ${APP_CONFIG_TIEN_TO_TRUONG.toLowerCase()}`,
+	'menu.GuessNumber': 'Trò chơi đoán số',
 	'menu.News': 'Tin tức',
 
 	'menu.DanhMuc': 'Danh mục',

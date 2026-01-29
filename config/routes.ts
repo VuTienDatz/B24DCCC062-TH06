@@ -31,6 +31,12 @@
 		hideInMenu: true,
 	},
 	{
+		path: '/doan-so',
+		name: 'GuessNumber',
+		component: './TienIch/DoanSo',
+		icon: 'BulbOutlined',
+	},
+	{
 		path: '/random-user',
 		name: 'RandomUser',
 		component: './RandomUser',
