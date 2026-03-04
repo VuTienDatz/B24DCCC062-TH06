@@ -31,16 +31,16 @@
 		hideInMenu: true,
 	},
 	{
-		path: '/doan-so',
-		name: 'GuessNumber',
-		component: './TienIch/DoanSo',
-		icon: 'BulbOutlined',
+		path: '/oan-tu-ti',
+		name: 'Oẳn Tù Tì',               // tiêu đề hiển thị
+		component: './TienIch/OanTuTi',   // trỏ vào folder đã đổi tên
+		icon: 'ScissorOutlined',          // icon phù hợp
 	},
 	{
-		path: '/todo-list',
-		name: 'TodoList',
-		component: './TienIch/TodoList',
-		icon: 'CheckSquareOutlined',
+		path: '/ngan-hang-cau-hoi',
+		name: 'Ngân hàng câu hỏi',
+		component: './TienIch/QuestionBank',
+		icon: 'BookOutlined',
 	},
 	{
 		path: '/random-user',
