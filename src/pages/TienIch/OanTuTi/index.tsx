@@ -59,7 +59,7 @@ const OanTuTiPage: React.FC = () => {
     return (
         <div style={{ maxWidth: 600, margin: '40px auto', padding: '0 20px' }}>
             <Card 
-                title={<Typography.Title level={3} style={{ textAlign: 'center', margin: 0 }}>🎮 Oẳn Tù Tì</Typography.Title>}
+                title={<Typography.Title level={3} style={{ textAlign: 'center', margin: 0 }}>Oẳn Tù Tì</Typography.Title>}
                 style={{ borderRadius: 16, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
             >
                 <Space direction='vertical' style={{ width: '100%' }} size={24}>

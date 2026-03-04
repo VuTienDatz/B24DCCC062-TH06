@@ -31,6 +31,12 @@
 		hideInMenu: true,
 	},
 	{
+		path: '/random-user',
+		name: 'RandomUser',
+		component: './RandomUser',
+		icon: 'ArrowsAltOutlined',
+	},
+	{
 		path: '/oan-tu-ti',
 		name: 'Oẳn Tù Tì',               // tiêu đề hiển thị
 		component: './TienIch/OanTuTi',   // trỏ vào folder đã đổi tên
@@ -42,13 +48,6 @@
 		component: './TienIch/QuestionBank',
 		icon: 'BookOutlined',
 	},
-	{
-		path: '/random-user',
-		name: 'RandomUser',
-		component: './RandomUser',
-		icon: 'ArrowsAltOutlined',
-	},
-
 	// DANH MUC HE THONG
 	// {
 	// 	name: 'DanhMuc',
