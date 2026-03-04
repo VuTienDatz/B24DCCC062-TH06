@@ -1,168 +1,149 @@
-import { Button, Card, Form, Input, List, Modal, Space, Typography } from 'antd';
-import React, { useEffect, useMemo, useState } from 'react';
+import { Button, Card, List, Space, Statistic, Typography } from 'antd';
+import React, { useMemo, useState } from 'react';
 
-// Kiểu dữ liệu cho một todo
-type TodoItem = {
+type Choice = 'Kéo' | 'Búa' | 'Bao';
+type Result = 'Thắng' | 'Thua' | 'Hòa';
+
+type GameRecord = {
 	id: string;
-	title: string;
+	playerChoice: Choice;
+	computerChoice: Choice;
+	result: Result;
 };
 
-const LOCAL_STORAGE_KEY = 'todoList';
+const choices: Choice[] = ['Kéo', 'Búa', 'Bao'];
 
-// Đọc todoList từ localStorage
-const loadTodos = (): TodoItem[] => {
-	if (typeof window === 'undefined') return [];
-	try {
-		const raw = window.localStorage.getItem(LOCAL_STORAGE_KEY);
-		if (!raw) return [];
-		const parsed = JSON.parse(raw) as TodoItem[];
-		if (!Array.isArray(parsed)) return [];
-		return parsed;
-	} catch {
-		return [];
+const getChoiceEmoji = (choice: Choice): string => {
+	switch (choice) {
+		case 'Kéo':
+			return '✋';
+		case 'Búa':
+			return '✊';
+		case 'Bao':
+			return '✌️';
 	}
 };
 
-// Ghi todoList vào localStorage
-const saveTodos = (todos: TodoItem[]) => {
-	if (typeof window === 'undefined') return;
-	window.localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos));
+const determineWinner = (player: Choice, computer: Choice): Result => {
+	if (player === computer) return 'Hòa';
+	if (
+		(player === 'Kéo' && computer === 'Bao') ||
+		(player === 'Búa' && computer === 'Kéo') ||
+		(player === 'Bao' && computer === 'Búa')
+	) {
+		return 'Thắng';
+	}
+	return 'Thua';
 };
 
-const TodoListPage: React.FC = () => {
-	const [todos, setTodos] = useState<TodoItem[]>([]);
-	const [form] = Form.useForm<{ title: string }>();
-	const [editing, setEditing] = useState<TodoItem | null>(null);
-	const [editForm] = Form.useForm<{ title: string }>();
+const OanTuTiPage: React.FC = () => {
+	const [gameHistory, setGameHistory] = useState<GameRecord[]>([]);
 
-	const title = useMemo(() => 'Todo List (lưu bằng localStorage)', []);
+	const pageTitle = useMemo(() => 'Oẳn Tù Tì', []);
 
-	// Khi component mount, đọc dữ liệu từ localStorage
-	useEffect(() => {
-		const initial = loadTodos();
-		setTodos(initial);
-	}, []);
-
-	// Hàm tiện ích: cập nhật state + lưu localStorage
-	const updateTodos = (next: TodoItem[]) => {
-		setTodos(next);
-		saveTodos(next);
-	};
-
-	// Thêm mới todo
-	const handleAdd = (values: { title: string }) => {
-		const newTodo: TodoItem = {
-			id: Date.now().toString(),
-			title: values.title.trim(),
+	const gameStats = useMemo(() => {
+		return {
+			wins: gameHistory.filter((h) => h.result === 'Thắng').length,
+			losses: gameHistory.filter((h) => h.result === 'Thua').length,
+			draws: gameHistory.filter((h) => h.result === 'Hòa').length,
 		};
-		const next = [...todos, newTodo];
-		updateTodos(next);
-		form.resetFields();
+	}, [gameHistory]);
+
+	const handlePlay = (playerChoice: Choice) => {
+		const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+		const result = determineWinner(playerChoice, computerChoice);
+
+		const newRecord: GameRecord = {
+			id: Date.now().toString(),
+			playerChoice,
+			computerChoice,
+			result,
+		};
+
+		setGameHistory([newRecord, ...gameHistory]);
 	};
 
-	// Mở modal chỉnh sửa
-	const openEdit = (item: TodoItem) => {
-		setEditing(item);
-		editForm.setFieldsValue({ title: item.title });
-	};
-
-	// Lưu chỉnh sửa
-	const handleEditSave = (values: { title: string }) => {
-		if (!editing) return;
-		const next = todos.map((t) => (t.id === editing.id ? { ...t, title: values.title.trim() } : t));
-		updateTodos(next);
-		setEditing(null);
-	};
-
-	// Xóa todo
-	const handleDelete = (id: string) => {
-		const next = todos.filter((t) => t.id !== id);
-		updateTodos(next);
+	const handleResetGame = () => {
+		setGameHistory([]);
 	};
 
 	return (
-		<Card title={title}>
+		<Card title={pageTitle}>
 			<Space direction='vertical' style={{ width: '100%' }} size={16}>
 				<Typography.Paragraph>
-					<b>Yêu cầu:</b> Đọc/hiển thị danh sách todo từ <code>localStorage</code>, cho phép thêm mới, chỉnh sửa và xóa.
+					<b>Luật chơi:</b> Kéo thắng Bao, Búa thắng Kéo, Bao thắng Búa. Chọn lựa chọn của bạn và máy tính sẽ chọn
+					ngẫu nhiên.
 				</Typography.Paragraph>
 
-				{/* Form thêm mới todo */}
-				<Card size='small' title='Thêm công việc mới'>
-					<Form form={form} layout='inline' onFinish={handleAdd}>
-						<Form.Item
-							name='title'
-							rules={[
-								{ required: true, message: 'Vui lòng nhập nội dung công việc!' },
-								{ whitespace: true, message: 'Nội dung không được chỉ có khoảng trắng.' },
-							]}
-							style={{ flex: 1, marginRight: 8 }}
-						>
-							<Input placeholder='Nhập nội dung công việc...' allowClear />
-						</Form.Item>
-						<Form.Item>
-							<Button type='primary' htmlType='submit'>
-								Thêm
+				{/* Lựa chọn */}
+				<Card size='small' title='Lựa chọn của bạn'>
+					<Space>
+						{choices.map((choice) => (
+							<Button key={choice} type='primary' size='large' onClick={() => handlePlay(choice)}>
+								{getChoiceEmoji(choice)} {choice}
 							</Button>
-						</Form.Item>
-					</Form>
+						))}
+					</Space>
 				</Card>
 
-				{/* Danh sách todo đọc từ localStorage */}
-				<Card size='small' title='Danh sách công việc'>
-					{todos.length === 0 ? (
-						<Typography.Text type='secondary'>Chưa có công việc nào.</Typography.Text>
+				{/* Thống kê trò chơi */}
+				<Card size='small' title='Thống kê trò chơi'>
+					<Space size='large'>
+						<Statistic title='Thắng' value={gameStats.wins} valueStyle={{ color: '#52c41a' }} />
+						<Statistic title='Thua' value={gameStats.losses} valueStyle={{ color: '#ff4d4f' }} />
+						<Statistic title='Hòa' value={gameStats.draws} valueStyle={{ color: '#1890ff' }} />
+					</Space>
+				</Card>
+
+				{/* Lịch sử trò chơi */}
+				<Card size='small' title='Lịch sử trò chơi'>
+					{gameHistory.length === 0 ? (
+						<Typography.Text type='secondary'>Chưa có ván đấu nào.</Typography.Text>
 					) : (
 						<List
-							dataSource={todos}
-							renderItem={(item) => (
-								<List.Item
-									actions={[
-										<Button size='small' onClick={() => openEdit(item)}>
-											Sửa
-										</Button>,
-										<Button size='small' danger onClick={() => handleDelete(item.id)}>
-											Xóa
-										</Button>,
-									]}
-								>
-									<Typography.Text>{item.title}</Typography.Text>
+							dataSource={gameHistory}
+							renderItem={(record) => (
+								<List.Item>
+									<Space>
+										<Typography.Text>
+											Bạn: <b>{getChoiceEmoji(record.playerChoice)} {record.playerChoice}</b>
+										</Typography.Text>
+										<Typography.Text> vs </Typography.Text>
+										<Typography.Text>
+											Máy: <b>{getChoiceEmoji(record.computerChoice)} {record.computerChoice}</b>
+										</Typography.Text>
+										<Typography.Text>
+											<b
+												style={{
+													color:
+														record.result === 'Thắng'
+															? '#52c41a'
+															: record.result === 'Thua'
+																? '#ff4d4f'
+																: '#1890ff',
+												}}
+											>
+												{record.result}
+											</b>
+										</Typography.Text>
+									</Space>
 								</List.Item>
 							)}
 						/>
 					)}
 				</Card>
 
-				{/* Modal chỉnh sửa todo */}
-				<Modal
-					title='Chỉnh sửa công việc'
-					visible={!!editing}
-					onCancel={() => setEditing(null)}
-					onOk={() => {
-						editForm.submit();
-					}}
-					okText='Lưu'
-					cancelText='Hủy'
-					destroyOnClose
-				>
-					<Form form={editForm} layout='vertical' onFinish={handleEditSave}>
-						<Form.Item
-							name='title'
-							label='Nội dung'
-							rules={[
-								{ required: true, message: 'Vui lòng nhập nội dung công việc!' },
-								{ whitespace: true, message: 'Nội dung không được chỉ có khoảng trắng.' },
-							]}
-						>
-							<Input placeholder='Nhập nội dung công việc...' />
-						</Form.Item>
-					</Form>
-				</Modal>
+				{/* Nút reset */}
+				{gameHistory.length > 0 && (
+					<Button danger onClick={handleResetGame} block>
+						Reset trò chơi
+					</Button>
+				)}
 			</Space>
 		</Card>
 	);
 };
 
-export default TodoListPage;
+export default OanTuTiPage;
 
 
