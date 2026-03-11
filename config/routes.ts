@@ -1,4 +1,4 @@
-﻿export default [
+export default [
 	{
 		path: '/user',
 		layout: false,
@@ -37,16 +37,41 @@
 		icon: 'ArrowsAltOutlined',
 	},
 	{
-		path: '/oan-tu-ti',
-		name: 'Oẳn Tù Tì',               // tiêu đề hiển thị
-		component: './TienIch/OanTuTi',   // trỏ vào folder đã đổi tên
-		icon: 'ScissorOutlined',          // icon phù hợp
-	},
-	{
-		path: '/ngan-hang-cau-hoi',
-		name: 'Ngân hàng câu hỏi',
-		component: './TienIch/QuestionBank',
-		icon: 'BookOutlined',
+		path: '/booking-app',
+		name: 'Quản lý Đặt lịch',
+		icon: 'ScheduleOutlined',
+		routes: [
+			{
+				path: '/booking-app/dashboard',
+				name: 'Thống kê & Báo cáo',
+				component: './BookingApp/Dashboard',
+				icon: 'BarChartOutlined',
+			},
+			{
+				path: '/booking-app/employee',
+				name: 'Quản lý Nhân viên',
+				component: './BookingApp/Employee',
+				icon: 'TeamOutlined',
+			},
+			{
+				path: '/booking-app/service',
+				name: 'Quản lý Dịch vụ',
+				component: './BookingApp/Service',
+				icon: 'ToolOutlined',
+			},
+			{
+				path: '/booking-app/appointment',
+				name: 'Quản lý Lịch hẹn',
+				component: './BookingApp/Appointment',
+				icon: 'CalendarOutlined',
+			},
+			{
+				path: '/booking-app/review',
+				name: 'Đánh giá & Phản hồi',
+				component: './BookingApp/Review',
+				icon: 'StarOutlined',
+			},
+		],
 	},
 	// DANH MUC HE THONG
 	// {
