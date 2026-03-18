@@ -73,19 +73,43 @@ export default [
 			},
 		],
 	},
-	// DANH MUC HE THONG
-	// {
-	// 	name: 'DanhMuc',
-	// 	path: '/danh-muc',
-	// 	icon: 'copy',
-	// 	routes: [
-	// 		{
-	// 			name: 'ChucVu',
-	// 			path: 'chuc-vu',
-	// 			component: './DanhMuc/ChucVu',
-	// 		},
-	// 	],
-	// },
+	{
+		path: '/diploma-management',
+		name: 'Quản lý Văn bằng',
+		icon: 'SolutionOutlined',
+		routes: [
+			{
+				path: '/diploma-management/books',
+				name: 'Quản lý Sổ văn bằng',
+				component: './DiplomaManagement/Books',
+				icon: 'BookOutlined',
+			},
+			{
+				path: '/diploma-management/decisions',
+				name: 'Quyết định tốt nghiệp',
+				component: './DiplomaManagement/Decisions',
+				icon: 'FileDoneOutlined',
+			},
+			{
+				path: '/diploma-management/configuration',
+				name: 'Cấu hình biểu mẫu',
+				component: './DiplomaManagement/Configuration',
+				icon: 'SettingOutlined',
+			},
+			{
+				path: '/diploma-management/diplomas',
+				name: 'Thông tin văn bằng',
+				component: './DiplomaManagement/Diplomas',
+				icon: 'AuditOutlined',
+			},
+			{
+				path: '/diploma-management/search',
+				name: 'Tra cứu văn bằng',
+				component: './DiplomaManagement/Search',
+				icon: 'SearchOutlined',
+			},
+		],
+	},
 
 	{
 		path: '/notification',
