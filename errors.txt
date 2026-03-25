@@ -1,0 +1,19 @@
+﻿yarn run v1.22.22
+$ tsc --noEmit
+src/components/Loading/index.tsx(1,26): error TS6133: 'HomeOutlined' is declared but its value is never read.
+src/components/OIDCBounder/index.tsx(11,24): error TS6133: 'hasAuthParams' is declared but its value is never read.
+src/components/OIDCBounder/index.tsx(13,1): error TS6133: 'LoadingPage' is declared but its value is never read.
+src/components/OIDCBounder/index.tsx(18,7): error TS2322: Type '({ children }: { children?: ReactNode; }) => ReactNode' is not assignable to type 'FC<{}>'.
+  Type 'ReactNode' is not assignable to type 'ReactElement<any, any> | null'.
+    Type 'undefined' is not assignable to type 'ReactElement<any, any> | null'.
+src/components/OIDCBounder/index.tsx(22,8): error TS6133: 'isUnauth' is declared but its value is never read.
+src/components/OIDCBounder/index.tsx(23,6): error TS6133: 'timeout' is declared but its value is never read.
+src/components/OIDCBounder/index.tsx(46,8): error TS6133: 'handleLogin' is declared but its value is never read.
+src/components/OneSignalBounder/index.tsx(43,9): error TS6133: 'top' is declared but its value is never read.
+src/components/OneSignalBounder/index.tsx(57,8): error TS6133: 'receiveMessage' is declared but its value is never read.
+src/models/tienich/caidat.ts(68,33): error TS7030: Not all code paths return a value.
+src/pages/DiplomaManagement/Books.tsx(63,23): error TS6133: 'count' is declared but its value is never read.
+src/pages/DiplomaManagement/Decisions.tsx(8,22): error TS6133: 'Paragraph' is declared but its value is never read.
+src/pages/TrangChu/test.tsx(1,8): error TS6133: 'React' is declared but its value is never read.
+src/pages/TrangChu/test.tsx(2,27): error TS2307: Cannot find module './GuessForm' or its corresponding type declarations.
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.

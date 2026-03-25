@@ -110,6 +110,37 @@ export default [
 			},
 		],
 	},
+	{
+		path: '/club-management',
+		name: 'Quản lý Câu lạc bộ',
+		icon: 'ContactsOutlined',
+		routes: [
+			{
+				path: '/club-management/clubs',
+				name: 'Danh sách CLB',
+				component: './ClubManagement/Clubs',
+				icon: 'UnorderedListOutlined',
+			},
+			{
+				path: '/club-management/registrations',
+				name: 'Đơn đăng ký',
+				component: './ClubManagement/Registrations',
+				icon: 'FormOutlined',
+			},
+			{
+				path: '/club-management/members',
+				name: 'Thành viên CLB',
+				component: './ClubManagement/Members',
+				icon: 'UserOutlined',
+			},
+			{
+				path: '/club-management/statistics',
+				name: 'Báo cáo thống kê',
+				component: './ClubManagement/Statistics',
+				icon: 'BarChartOutlined',
+			},
+		],
+	},
 
 	{
 		path: '/notification',

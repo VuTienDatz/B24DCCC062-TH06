@@ -1,0 +1,143 @@
+.club-management-container {
+  padding: 24px;
+  background-color: #f0f2f5;
+  min-height: calc(100vh - 64px);
+
+  .premium-card {
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: none;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    overflow: hidden;
+
+    &:hover {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .ant-card-head {
+      border-bottom: 1px solid #f0f0f0;
+      padding: 0 24px;
+      font-size: 18px;
+      font-weight: 600;
+      min-height: 56px;
+
+      .ant-card-head-title {
+        color: #1f1f1f;
+        padding: 16px 0;
+      }
+    }
+
+    .ant-card-body {
+      padding: 24px;
+    }
+  }
+
+  /* Stunning Stat Cards */
+  .stat-card-gradient {
+    border-radius: 16px;
+    border: none;
+    color: white;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+
+    .ant-statistic-title {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .ant-statistic-content {
+      color: white;
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.2;
+
+      .anticon {
+        opacity: 0.8;
+        font-size: 40px;
+        position: absolute;
+        right: 24px;
+        bottom: 24px;
+      }
+    }
+
+    &.stat-card-primary {
+      background: linear-gradient(135deg, #1890ff 0%, #0050b3 100%) !important;
+    }
+    &.stat-card-info {
+      background: linear-gradient(135deg, #13c2c2 0%, #006d75 100%) !important;
+    }
+    &.stat-card-success {
+      background: linear-gradient(135deg, #52c41a 0%, #237804 100%) !important;
+    }
+    &.stat-card-error {
+      background: linear-gradient(135deg, #f5222d 0%, #a8071a 100%) !important;
+    }
+    &.stat-card-warning {
+      background: linear-gradient(135deg, #faad14 0%, #ad6800 100%) !important;
+    }
+  }
+
+  /* Beautiful Table */
+  .premium-table {
+    .ant-table {
+      background: transparent;
+    }
+    .ant-table-thead > tr > th {
+      background: #fafafa;
+      color: #595959;
+      font-weight: 600;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .ant-table-tbody > tr > td {
+      border-bottom: 1px solid #f0f0f0;
+      padding: 16px;
+    }
+    .ant-table-tbody > tr:hover > td {
+      background: #f6faff;
+    }
+  }
+
+  /* Animated Avatar */
+  .animated-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    border: 2px solid white;
+
+    &:hover {
+      transform: scale(1.15) rotate(5deg);
+    }
+  }
+
+  /* Fancy Badges/Tags */
+  .status-tag {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 500;
+    border: none;
+    font-size: 13px;
+
+    &-Approved {
+      background-color: #f6ffed;
+      color: #389e0d;
+    }
+    &-Pending {
+      background-color: #e6f7ff;
+      color: #096dd9;
+    }
+    &-Rejected {
+      background-color: #fff1f0;
+      color: #cf1322;
+    }
+  }
+}
