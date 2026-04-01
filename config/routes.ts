@@ -142,6 +142,44 @@ export default [
 		],
 	},
 
+	// TRAVEL APP
+	{
+		path: '/travel-app',
+		name: 'Kế hoạch Du lịch',
+		icon: 'CompassOutlined',
+		routes: [
+			{
+				path: '/travel-app/explore',
+				name: 'Khám phá Tọa độ',
+				component: './TravelApp/Explore',
+				icon: 'EnvironmentOutlined',
+			},
+			{
+				path: '/travel-app/planner',
+				name: 'Lập lịch trình',
+				component: './TravelApp/Planner',
+				icon: 'CalendarOutlined',
+			},
+			{
+				path: '/travel-app/budget',
+				name: 'Quản lý ngân sách',
+				component: './TravelApp/Budget',
+				icon: 'WalletOutlined',
+			},
+			{
+				path: '/travel-app/admin-destinations',
+				name: 'Quản lý điểm đến (Admin)',
+				component: './TravelApp/AdminDestinations',
+				icon: 'SettingOutlined',
+			},
+			{
+				path: '/travel-app/admin-stats',
+				name: 'Thống kê (Admin)',
+				component: './TravelApp/AdminStats',
+				icon: 'BarChartOutlined',
+			},
+		],
+	},
 	{
 		path: '/notification',
 		routes: [
